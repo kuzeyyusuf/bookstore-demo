@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 100px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+p {
+    color: #555;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    background: #444;
+}
+form {
+    margin-top: 25px;
+}
+
+input {
+    display: block;
+    width: 90%;
+    max-width: 400px;
+    margin: 12px auto;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button.btn {
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.login-info {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+}
+.wide {
+    max-width: 1200px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+th {
+    background: #222;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+tr:hover {
+    background: #f7f7f7;
+}
+
+.cover-placeholder {
+    width: 80px;
+    height: 110px;
+    background: #ddd;
+    border-radius: 6px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #555;
+}
+.admin-actions {
+    margin: 20px 0;
+}
+
+.btn.danger {
+    background: #c0392b;
+}
+
+.btn.danger:hover {
+    background: #922b21;
+}
+
+.book-form {
+    margin: 20px auto;
+    padding: 20px;
+    background: #f7f7f7;
+    border-radius: 10px;
+}
+
+.book-form input {
+    max-width: 700px;
+}
+
+.delete-link {
+    color: #c0392b;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.delete-link:hover {
+    text-decoration: underline;
+}
+.btn.success {
+    background: #27ae60;
+}
+
+.btn.success:hover {
+    background: #1e8449;
+}
+.btn.small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+.chart-box {
+    background: white;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}

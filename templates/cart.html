@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container wide">
+    <h1>Your Cart</h1>
+
+    {% if books %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>€{{ "%.2f"|format(book.price) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Total: €{{ "%.2f"|format(total) }}</h2>
+
+        <a href="/checkout" class="btn success">Checkout</a>
+
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+
+    <a href="/books" class="btn">Back to Books</a>
+</div>
+
+</body>
+</html>

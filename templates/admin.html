@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Bookstore Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container wide">
+    <h1>Admin Dashboard</h1>
+    <p>Welcome, {{ session.email }}</p>
+
+    <div class="admin-actions">
+        <a href="/books" class="btn">View User Book Page</a>
+        <a href="/admin/generate-junk" class="btn danger">Generate Junk Data</a>
+        <a href="/admin/reset-golden-state" class="btn success">Golden State Reset</a>
+        <a href="/logout" class="btn">Logout</a>
+    </div>
+
+    <h2>Monthly Sales Revenue</h2>
+
+    <div class="chart-box">
+        <canvas id="salesChart"></canvas>
+    </div>
+
+    <h2>Add New Book</h2>
+
+    <form method="POST" action="/admin/add-book" class="book-form">
+        <input type="text" name="title" placeholder="Book title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <input type="number" step="0.01" name="price" placeholder="Price" required>
+        <input type="number" name="stock" placeholder="Stock" required>
+        <input type="text" name="cover_image" placeholder="Cover image filename">
+        <input type="text" name="description" placeholder="Description">
+
+        <button type="submit" class="btn">Add Book</button>
+    </form>
+
+    <h2>Inventory Management</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Cover</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>€{{ "%.2f"|format(book.price) }}</td>
+                <td>{{ book.stock }}</td>
+                <td>{{ book.cover_image }}</td>
+                <td>
+                    <a href="/admin/delete-book/{{ book.id }}" class="delete-link">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const months = {{ months | tojson }};
+    const revenues = {{ revenues | tojson }};
+
+    const ctx = document.getElementById('salesChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Monthly Revenue (€)',
+                data: revenues
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

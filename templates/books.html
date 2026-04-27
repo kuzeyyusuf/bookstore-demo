@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books - Bookstore Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container wide">
+    <h1>Book List</h1>
+    <p>Welcome, {{ session.email }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cover</th>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>
+                    <div class="cover-placeholder">
+                        {{ book.cover_image }}
+                    </div>
+                </td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>€{{ "%.2f"|format(book.price) }}</td>
+                <td>{{ book.stock }}</td>
+                <td>{{ book.description }}</td>
+                <td>
+                    <a href="/add-to-cart/{{ book.id }}" class="btn small">Add</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+        <a href="/cart" class="btn">Go to Cart</a>
+
+        {% if session.role == "admin" %}
+            <a href="/admin" class="btn">Admin Panel</a>
+        {% endif %}
+
+        <a href="/logout" class="btn">Logout</a>
+    </div>
+</div>
+
+</body>
+</html>
